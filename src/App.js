@@ -1,17 +1,22 @@
+import { useState } from 'react';
 const messages = [
   'Learn React ⚛️',
   'Apply for jobs 💼',
   'Invest your new income 🤑',
 ];
 export default function App() {
-  const step = 3;
+  const [step, setStep] = useState(1);
+  const [test] = useState({ name: 'Jesus' });
 
   function handlePrevious() {
-    alert('previous');
+    if (step > 1) setStep(step - 1);
   }
 
   function handleNext() {
-    alert('next');
+    if (step < 3) setStep(step + 1);
+
+    // BAD PRACTICE
+    test.name = 'Jesica';
   }
 
   return (
@@ -23,6 +28,7 @@ export default function App() {
       </div>
       <p className="message">
         Step {step}: {messages[step - 1]}
+        {test.name}
       </p>
       <div className="buttons">
         <button
